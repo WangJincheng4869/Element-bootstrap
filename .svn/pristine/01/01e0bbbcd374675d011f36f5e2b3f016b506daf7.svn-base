@@ -1,0 +1,280 @@
+(function ($) {
+  let constants = {
+      classes: {
+        zoomInTopLeaveActive: 'el-zoom-in-top-leave-active',
+        zoomInTopEnter: 'el-zoom-in-top-enter',
+        zoomInTopEnterActive: 'el-zoom-in-top-enter-active',
+        isFocus: 'is-focus',
+        cascader: 'cascader',
+        elPopper: 'el-popper',
+        popperArrow: 'popper__arrow',
+        activePath: 'in-active-path',
+        active: 'is-active',
+        d_block: 'd-block',
+      },
+
+      defaultAttrs: {
+        'type': 'text',
+        'autocomplete': 'off',
+        'readonly': 'readonly'
+      },
+      html: {
+        dropdown: function (targetId) {
+          return '' +
+            '<div class="input-suffix"><i class="iconfont icon-arrow-up"></i></div>' +
+            '<div class="area-selector-dropdown el-popper" x-placement="bottom-start">' +
+            '  <div class="popper__arrow"></div>' +
+            '  <div class="area-selector-panel" id="areaSelector_panel_' + targetId + '">' +
+            '    <ul class="nav nav-tabs" role="tablist">' +
+            '      <li class="nav-item" id="nav_area_selector_country"><a class="nav-link active" data-toggle="tab" href="#area_selector_country" role="tab" aria-selected="true">请选择</a></li>' +
+            '      <li class="nav-item" id="nav_area_selector_province"><a class="nav-link d-none" data-toggle="tab" href="#area_selector_province" role="tab" aria-selected="true">请选择</a></li>' +
+            '      <li class="nav-item" id="nav_area_selector_city"><a class="nav-link d-none" data-toggle="tab" href="#area_selector_city" role="tab" aria-selected="true">请选择</a></li>' +
+            '      <li class="nav-item" id="nav_area_selector_county"><a class="nav-link d-none" data-toggle="tab" href="#area_selector_county" role="tab" aria-selected="true">请选择</a></li>' +
+            '      <li class="nav-item" id="nav_area_selector_street"><a class="nav-link d-none" data-toggle="tab" href="#area_selector_street" role="tab" aria-selected="true">请选择</a></li>' +
+            '    </ul>' +
+            '    <div class="tab-content">' +
+            '      <div class="tab-pane fade show active" id="area_selector_country" role="tabpanel"><ul></ul></div>' +
+            '      <div class="tab-pane fade" id="area_selector_province" role="tabpanel"><ul></ul></div>' +
+            '      <div class="tab-pane fade" id="area_selector_city" role="tabpanel"><ul></ul></div>' +
+            '      <div class="tab-pane fade" id="area_selector_county" role="tabpanel"><ul></ul></div>' +
+            '      <div class="tab-pane fade" id="area_selector_street" role="tabpanel"><ul></ul></div>' +
+            '    </div>' +
+            '  </div>' +
+            '</div>'
+        },
+
+        li: function (id, name) {
+          return '<li data-id="' + id + '">' + name + '</li>';
+        }
+      }
+    },
+    defaults = {
+      // 节点数据中保存唯一标识的属性名称
+      idKey: 'id',
+      // 节点数据中保存其父节点唯一标识的属性名称
+      pIdKey: 'pId',
+      // 节点数据保存节点名称的属性名称
+      name: 'name',
+      // 是否禁用组件
+      disabled: false,
+      // 选项分隔符
+      separator: ' / ',
+      onClick: function (event, treeId, treeNode) {
+      },
+      onCheck: function (event, treeId, treeNode) {
+      }
+    },
+    // 以targetId为key存储选中节点对象
+    checkedNodes = {},
+    methods = {
+      /**
+       * 获取或设置值
+       * @param val 默认为获取值，单选时填入idKey的值，多选为idKey的数组
+       * @returns {[]|*} 单选时填入idKey的值，多选为idKey的数组
+       */
+      val: function (val) {
+        if (val === undefined) {
+          let values = [], config = this.config;
+          if ($.isEmptyObject(checkedNodes[this.targetId])) return config.onlySelectOne ? null : [];
+          if (config.onlySelectOne) return checkedNodes[this.targetId][config.idKey];
+          $.each(checkedNodes[this.targetId], function (i, node) {
+            values.push(node[config.idKey]);
+          });
+          return values;
+        } else {
+          let targetId = this.targetId, config = this.config,
+            treeObj = $.fn.zTree.getZTreeObj('treeSelect_' + targetId);
+          if (!$.isEmptyObject(val) && !config.onlySelectOne) {
+            let valLength = val.length;
+            for (let i = 0; i < valLength; i++) {
+              let node = treeObj.getNodeByParam(config.idKey, val[i]);
+              treeObj.checkNode(node, true, true, true);
+              treeObj.selectNode(node);
+            }
+          } else if (val !== null && val !== '' && config.onlySelectOne) {
+            let node = treeObj.getNodeByParam(config.idKey, val);
+            treeObj.selectNode(node);
+            $('#' + targetId).attr('placeholder', node[config.name]);
+          }
+        }
+      },
+
+      /**
+       * 获取选中的节点对象
+       * @returns {Object|Array} 单选为节点对象，多选为节点对象数组
+       */
+      getCheckedNodes() {
+        if (this.config.onlySelectOne) {
+          return checkedNodes[this.targetId] || {};
+        }
+        return checkedNodes[this.targetId] || [];
+      }
+    };
+
+  $.fn.extend({
+    'areaSelector': function (options) {
+      $(this).wrap('<div class="area-selector is-focus"></div>');
+      if (typeof options !== 'object') return this;
+      let $areaSelectorInput = $(this), targetId = $areaSelectorInput.attr('id'),
+        classes = constants.classes,
+        html = constants.html, config = $.extend({}, defaults, options),
+        // 级联组件对象，其中包含一些常用方法
+        treeSelect = {targetId: targetId, config: config};
+      $areaSelectorInput.attr(constants.defaultAttrs).after(html.dropdown(targetId));
+      if (config.disabled) $areaSelectorInput.attr('disabled', 'disabled');
+      let $areaSelector = $areaSelectorInput.parent('.area-selector'),
+        $areaSelector_dropdown = $areaSelectorInput.siblings('.area-selector-dropdown');
+
+      $.ajax({
+        type: 'post',
+        url: 'plug-in/area-selector/js/area.json',
+        dataType: 'json',
+        success: function (data) {
+          let lis = '';
+          $.each(data, function (i, node) {
+            lis += html.li(node[config.idKey], node[config.name]);
+          });
+          $('#area_selector_country ul').html(lis)
+        }
+      });
+
+      /**
+       * 文本框单击事件绑定，展开面板操作
+       */
+      $areaSelectorInput.on('click', function () {
+        if (!$areaSelector.hasClass(classes.isFocus)) {
+          adjustPanelDirection($areaSelectorInput, $areaSelector_dropdown);
+          $areaSelector_dropdown.addClass(classes.zoomInTopEnterActive).addClass(classes.zoomInTopEnter);
+          $areaSelector.addClass(classes.isFocus);
+          setTimeout(function () {
+            $areaSelector_dropdown.removeClass(classes.zoomInTopEnter);
+          }, 7);
+          setTimeout(function () {
+            $areaSelector_dropdown.removeClass(classes.zoomInTopEnterActive);
+          }, 300);
+        } else {
+          closePanel($areaSelector, $areaSelector_dropdown);
+        }
+      });
+
+      $areaSelector_dropdown.on('click', '.tab-content li', function () {
+        let $this = $(this), name = $this.text();
+        $this.addClass('active').siblings().removeClass('active');
+        let tabId = $this.parents('.tab-pane').attr('id'), navId = 'nav_' + tabId;
+        $('#' + navId + ' .nav-link').text(name);
+        if (navId === 'nav_area_selector_street') {
+          let names = [];
+          $('#areaSelector_panel_' + targetId + ' .tab-content li.active').each(function (i, e) {
+            names.push($(e).text());
+          });
+          $areaSelectorInput.val(names.join(config.separator));
+          closePanel($areaSelector, $areaSelector_dropdown);
+        } else {
+          $.ajax({
+            type: 'post',
+            url: 'plug-in/area-selector/js/area.json',
+            dataType: 'json',
+            success: function (data) {
+              let lis = '';
+              $.each(data, function (i, node) {
+                lis += html.li(node[config.idKey], node[config.name]);
+              });
+              $('#' + tabId).next().find('ul').html(lis);
+              $('#' + navId + '~ .nav-item .nav-link').addClass('d-none').text('请选择');
+              $('#' + navId + ' + .nav-item .nav-link').removeClass('d-none').click();
+            }
+          });
+        }
+      });
+
+      /**
+       * 单击空白处关闭面板
+       */
+      $(document).on('click', function (e) {
+        if (!$areaSelector.is(e.target) && $areaSelector.has(e.target).length === 0) {
+          if ($areaSelector.hasClass(classes.isFocus)) {
+            closePanel($areaSelector, $areaSelector_dropdown);
+          }
+        }
+      });
+
+      /**
+       * 文本框父元素滚动监听，用于计算如何显示面板
+       */
+      $(document).scroll(function () {
+        adjustPanelDirection($areaSelectorInput, $areaSelectorInput.siblings('.tree-select-dropdown'));
+      });
+      return $.extend({}, treeSelect, methods);
+    }
+  });
+
+  /**
+   * 调整面板方法
+   * @param $this 下来文本框对象
+   * @param $cascader_dropdown 下来面板对象
+   */
+  function adjustPanelDirection($this, $cascader_dropdown) {
+    if ($this && $cascader_dropdown && $this.length > 0 && $cascader_dropdown.length > 0) {
+      let bottom = $(window).height() - ($this.offset().top - $(document).scrollTop());
+      if (bottom <= 250) {
+        $cascader_dropdown.attr('x-placement', 'top-start');
+      } else {
+        $cascader_dropdown.attr('x-placement', 'bottom-start');
+      }
+    }
+  }
+
+  /**
+   * 关闭面板
+   * @param $treeSelect 组件最外级对象
+   * @param $treeSelect_dropdown 下来面板对象
+   */
+  function closePanel($treeSelect, $treeSelect_dropdown) {
+    if ($treeSelect && $treeSelect_dropdown && $treeSelect.length > 0 && $treeSelect_dropdown.length > 0) {
+      let classes = constants.classes;
+      $treeSelect_dropdown.addClass(classes.zoomInTopLeaveActive).addClass(classes.d_block);
+      $treeSelect.removeClass(classes.isFocus);
+      setTimeout(function () {
+        $treeSelect_dropdown.removeClass(constants.classes.zoomInTopLeaveActive).removeClass(classes.d_block);
+      }, 300);
+    }
+  }
+
+  /**
+   * 初始化滚动条
+   * @param targetId 级联组件id
+   * @param $scrollbar__wrap 内容包裹对象
+   * @param $scrollbar__thumb 竖向滚动条把手
+   * @param scrollbarHeight 横向滚动条的高度
+   * @param wrapHeight 包裹内容面板的高度，真实的高度是去除横向滚动条的高度；因为设置了margin-bottom=负的滚动条的高度
+   */
+  function initScrollbar(targetId, $scrollbar__wrap, $scrollbar__thumb, scrollbarHeight, wrapHeight) {
+    // 内容的高度
+    let viewHeight = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__view')[0].scrollHeight;
+    if (wrapHeight < viewHeight) $scrollbar__thumb.css('height', (wrapHeight / viewHeight * 100) + '%');
+    setTimeout(function () {
+      initScrollbar(targetId, $scrollbar__wrap, $scrollbar__thumb, scrollbarHeight, wrapHeight)
+    }, 10)
+  }
+
+  /**
+   * 获取滚动条宽度和高度
+   * @returns {[number, number]} 0位：竖向滚动条宽度，1位：横向滚动条高度
+   */
+  function getScrollBarWidthAndHeight() {
+    let el = document.createElement("p"),
+      styles = {
+        width: "100px",
+        height: "100px",
+        overflow: "scroll"
+      };
+    for (let i in styles) {
+      el.style[i] = styles[i];
+    }
+    document.body.appendChild(el);
+    let scrollBarWidth = el.offsetWidth - el.clientWidth,
+      scrollBarHeight = el.offsetHeight - el.clientHeight;
+    el.remove();
+    return [scrollBarWidth, scrollBarHeight];
+  }
+})(jQuery);

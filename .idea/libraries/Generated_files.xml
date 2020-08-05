@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/plug-in/area-selector/js/area-selector.min.js" />
+        <item url="file://$PROJECT_DIR$/plug-in/cascader/js/cascader.min.js" />
+        <item url="file://$PROJECT_DIR$/plug-in/treeSelect/js/treeSelect.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/plug-in/area-selector/js/area-selector.min.js" />
+      <root url="file://$PROJECT_DIR$/plug-in/cascader/js/cascader.min.js" />
+      <root url="file://$PROJECT_DIR$/plug-in/treeSelect/js/tree-select.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

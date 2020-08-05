@@ -1,0 +1,359 @@
+[
+  {
+    "id": -1,
+    "parentId": -2,
+    "name": "中国",
+    "level": 1,
+    "index": 0
+  },
+  {
+    "id": 0,
+    "parentId": -1,
+    "name": "北京",
+    "level": 1,
+    "index": 0
+  },
+  {
+    "id": 18,
+    "parentId": -1,
+    "name": "黑龙江省",
+    "level": 1,
+    "index": 1
+  },
+  {
+    "id": 19,
+    "parentId": 18,
+    "name": "哈尔滨市",
+    "level": 2,
+    "index": 0
+  },
+  {
+    "id": 1,
+    "parentId": 0,
+    "name": "丰台区",
+    "level": 2,
+    "index": 0
+  },
+  {
+    "id": 10,
+    "parentId": 0,
+    "name": "海淀区",
+    "level": 2,
+    "index": 1
+  },
+  {
+    "id": 50,
+    "parentId": 18,
+    "name": "绥化市",
+    "level": 2,
+    "index": 1
+  },
+  {
+    "id": 11,
+    "parentId": 10,
+    "name": "三环以内",
+    "level": 3,
+    "index": 0
+  },
+  {
+    "id": 2,
+    "parentId": 1,
+    "name": "四环到五环之间",
+    "level": 3,
+    "index": 0
+  },
+  {
+    "id": 20,
+    "parentId": 19,
+    "name": "南岗区",
+    "level": 3,
+    "index": 0
+  },
+  {
+    "id": 4,
+    "parentId": 1,
+    "name": "二环到三环",
+    "level": 3,
+    "index": 1
+  },
+  {
+    "id": 12,
+    "parentId": 10,
+    "name": "三环到四环之间",
+    "level": 3,
+    "index": 1
+  },
+  {
+    "id": 49,
+    "parentId": 19,
+    "name": "香坊区",
+    "level": 3,
+    "index": 1
+  },
+  {
+    "id": 13,
+    "parentId": 10,
+    "name": "四环到五环之间",
+    "level": 3,
+    "index": 2
+  },
+  {
+    "id": 5,
+    "parentId": 1,
+    "name": "三环到四环之间",
+    "level": 3,
+    "index": 2
+  },
+  {
+    "id": 6,
+    "parentId": 1,
+    "name": "五环到六环之间",
+    "level": 3,
+    "index": 3
+  },
+  {
+    "id": 14,
+    "parentId": 10,
+    "name": "五环到六环之间",
+    "level": 3,
+    "index": 3
+  },
+  {
+    "id": 15,
+    "parentId": 10,
+    "name": "六环以外",
+    "level": 3,
+    "index": 4
+  },
+  {
+    "id": 7,
+    "parentId": 1,
+    "name": "六环之外",
+    "level": 3,
+    "index": 4
+  },
+  {
+    "id": 8,
+    "parentId": 1,
+    "name": "大红门街道",
+    "level": 3,
+    "index": 5
+  },
+  {
+    "id": 16,
+    "parentId": 10,
+    "name": "西三旗街道",
+    "level": 3,
+    "index": 5
+  },
+  {
+    "id": 17,
+    "parentId": 10,
+    "name": "西二旗",
+    "level": 3,
+    "index": 6
+  },
+  {
+    "id": 9,
+    "parentId": 1,
+    "name": "东高地街道",
+    "level": 3,
+    "index": 6
+  },
+  {
+    "id": 21,
+    "parentId": 10,
+    "name": "八里庄街道",
+    "level": 3,
+    "index": 7
+  },
+  {
+    "id": 22,
+    "parentId": 10,
+    "name": "北太平庄街道",
+    "level": 3,
+    "index": 8
+  },
+  {
+    "id": 23,
+    "parentId": 10,
+    "name": "北下关街道",
+    "level": 3,
+    "index": 9
+  },
+  {
+    "id": 24,
+    "parentId": 10,
+    "name": "东升镇",
+    "level": 3,
+    "index": 10
+  },
+  {
+    "id": 25,
+    "parentId": 10,
+    "name": "甘家口街道",
+    "level": 3,
+    "index": 11
+  },
+  {
+    "id": 26,
+    "parentId": 10,
+    "name": "海淀街道",
+    "level": 3,
+    "index": 12
+  },
+  {
+    "id": 27,
+    "parentId": 10,
+    "name": "花园路街道",
+    "level": 3,
+    "index": 13
+  },
+  {
+    "id": 28,
+    "parentId": 10,
+    "name": "马连洼街道",
+    "level": 3,
+    "index": 14
+  },
+  {
+    "id": 29,
+    "parentId": 10,
+    "name": "青龙桥街道",
+    "level": 3,
+    "index": 15
+  },
+  {
+    "id": 30,
+    "parentId": 10,
+    "name": "清河街道",
+    "level": 3,
+    "index": 16
+  },
+  {
+    "id": 31,
+    "parentId": 10,
+    "name": "清华园街道",
+    "level": 3,
+    "index": 17
+  },
+  {
+    "id": 32,
+    "parentId": 10,
+    "name": "上地街道",
+    "level": 3,
+    "index": 18
+  },
+  {
+    "id": 33,
+    "parentId": 10,
+    "name": "上庄镇",
+    "level": 3,
+    "index": 19
+  },
+  {
+    "id": 34,
+    "parentId": 10,
+    "name": "曙光街道",
+    "level": 3,
+    "index": 20
+  },
+  {
+    "id": 35,
+    "parentId": 10,
+    "name": "四季青镇",
+    "level": 3,
+    "index": 21
+  },
+  {
+    "id": 36,
+    "parentId": 10,
+    "name": "苏家坨镇",
+    "level": 3,
+    "index": 22
+  },
+  {
+    "id": 37,
+    "parentId": 10,
+    "name": "田村路街道",
+    "level": 3,
+    "index": 23
+  },
+  {
+    "id": 38,
+    "parentId": 10,
+    "name": "万柳地区",
+    "level": 3,
+    "index": 24
+  },
+  {
+    "id": 39,
+    "parentId": 10,
+    "name": "万寿路街道",
+    "level": 3,
+    "index": 25
+  },
+  {
+    "id": 40,
+    "parentId": 10,
+    "name": "温泉镇",
+    "level": 3,
+    "index": 26
+  },
+  {
+    "id": 41,
+    "parentId": 10,
+    "name": "西北旺镇",
+    "level": 3,
+    "index": 27
+  },
+  {
+    "id": 42,
+    "parentId": 10,
+    "name": "香山街道",
+    "level": 3,
+    "index": 28
+  },
+  {
+    "id": 43,
+    "parentId": 10,
+    "name": "学院路街道",
+    "level": 3,
+    "index": 29
+  },
+  {
+    "id": 44,
+    "parentId": 10,
+    "name": "燕园街道",
+    "level": 3,
+    "index": 30
+  },
+  {
+    "id": 45,
+    "parentId": 10,
+    "name": "羊坊店街道",
+    "level": 3,
+    "index": 31
+  },
+  {
+    "id": 46,
+    "parentId": 10,
+    "name": "永定路街道",
+    "level": 3,
+    "index": 32
+  },
+  {
+    "id": 47,
+    "parentId": 10,
+    "name": "中关村街道",
+    "level": 3,
+    "index": 33
+  },
+  {
+    "id": 48,
+    "parentId": 10,
+    "name": "紫竹院街道",
+    "level": 3,
+    "index": 34
+  }
+]

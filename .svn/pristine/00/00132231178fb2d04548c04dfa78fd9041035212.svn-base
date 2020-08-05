@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link href="plug-in/bootstrap/docs.min.css" rel="stylesheet">
+  <link href="plug-in/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="plug-in/bootstrap-slider/css/bootstrap-slider.min.css" rel="stylesheet">
+  <link href="plug-in/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+  <link href="plug-in/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet">
+  <link href="font/iconfont/iconfont.css" rel="stylesheet">
+  <link href="css/simperfect.css" rel="stylesheet">
+
+  <script src="plug-in/jquery/jquery-3.4.1.js"></script>
+  <script src="plug-in/popper/popper.min.js"></script>
+  <script src="plug-in/bootstrap/js/bootstrap.js"></script>
+  <script src="plug-in/bootstrap-slider/bootstrap-slider.js"></script>
+  <script src="plug-in/bootstrap-select/js/bootstrap-select.js"></script>
+  <script src="plug-in/zTree/js/jquery.ztree.all.js"></script>
+  <script src="plug-in/zTree/js/jquery.ztree.exhide.min.js"></script>
+  <script src="plug-in/cascader/js/cascader.js"></script>
+  <script src="plug-in/treeSelect/js/treeSelect.js"></script>
+  <script src="plug-in/layer/layer.js"></script>
+  <script src="plug-in/laydate/laydate.js"></script>
+  <title>demo</title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 bd-sidebar" style="top: 0;height: 100vh;border: none">
+      <nav class="side-nav bd-links col-12 col-md-3 col-xl-2" id="bd-docs-nav" style="max-height: 100vh;position: fixed">
+        <ul id="list-example">
+          <li class="nav-item">
+            <a>组件</a>
+            <div class="nav-group">
+              <div class="nav-group__title">Basic</div>
+              <ul class="pure-menu-list">
+                <li class="nav-item">
+                  <a href="#nav_basic_button">Button 按钮</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_basic_link">Link 文字链接</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_basic_divider_vertical">垂直分隔符</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-group">
+              <div class="nav-group__title">Notice</div>
+              <ul class="pure-menu-list">
+                <li class="nav-item">
+                  <a href="#nav_message">Message 消息提示</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_message_box">MessageBox 弹框</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-group">
+              <div class="nav-group__title">Data</div>
+              <ul class="pure-menu-list">
+                <li class="nav-item">
+                  <a href="#nav_data_badge">Badge 标记</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_data_Tree">Tree 树形控件</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-group">
+              <div class="nav-group__title">Form</div>
+              <ul class="pure-menu-list">
+                <li class="nav-item">
+                  <a href="#nav_form_input">Input 输入框</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_checkboxes">Checkboxes 复选框</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_radios">Radios 单选框</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_switches">Switches 开关</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_select">Select 选择器</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_date">DateTimePicker 日期时间选择器</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_tree_select">TreeSelect 树选择</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_cascader">Cascader 级联选择器</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_area">地址 选择器</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_form_slider">Slider 滑块</a>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-group">
+              <div class="nav-group__title">Navigation</div>
+              <ul class="pure-menu-list">
+                <li class="nav-item">
+                  <a href="#nav_navigation_dropdown">Dropdown 下拉菜单</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#nav_navigation_tabs">Tabs 标签页</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_basic_button">Button 按钮</h3>
+          <p>常用的操作按钮，使用方式与bootstrap相同，详见官网文档 <a href="https://getbootstrap.com/docs/4.3/components/buttons/" target="_blank">API</a></p>
+          <div class="bd-example">
+            <p>
+              <button type="button" class="btn">默认按钮</button>
+              <button type="button" class="btn btn-light">朴素按钮</button>
+              <button type="button" class="btn btn-primary">主要按钮</button>
+              <button type="button" class="btn btn-success">成功按钮</button>
+              <button type="button" class="btn btn-info">信息按钮</button>
+              <button type="button" class="btn btn-warning">警告按钮</button>
+              <button type="button" class="btn btn-danger">危险按钮</button>
+            </p>
+            <p>
+              <button type="button" class="btn" disabled>默认按钮</button>
+              <button type="button" class="btn btn-light" disabled>朴素按钮</button>
+              <button type="button" class="btn btn-primary" disabled>主要按钮</button>
+              <button type="button" class="btn btn-success" disabled>成功按钮</button>
+              <button type="button" class="btn btn-info" disabled>信息按钮</button>
+              <button type="button" class="btn btn-warning" disabled>警告按钮</button>
+              <button type="button" class="btn btn-danger" disabled>危险按钮</button>
+            </p>
+            <p>
+              <button type="button" class="btn btn-outline-light">朴素按钮</button>
+              <button type="button" class="btn btn-outline-primary">主要按钮</button>
+              <button type="button" class="btn btn-outline-success">成功按钮</button>
+              <button type="button" class="btn btn-outline-info">信息按钮</button>
+              <button type="button" class="btn btn-outline-warning">警告按钮</button>
+              <button type="button" class="btn btn-outline-danger">危险按钮</button>
+            </p>
+            <p>
+              <button type="button" class="btn btn-outline-light" disabled>朴素按钮</button>
+              <button type="button" class="btn btn-outline-primary" disabled>主要按钮</button>
+              <button type="button" class="btn btn-outline-success" disabled>成功按钮</button>
+              <button type="button" class="btn btn-outline-info" disabled>信息按钮</button>
+              <button type="button" class="btn btn-outline-warning" disabled>警告按钮</button>
+              <button type="button" class="btn btn-outline-danger" disabled>危险按钮</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_basic_link">Link 文字链接</h3>
+          <p>常用的文字超链接</p>
+          <p class="bd-example">
+            <a href="#" class="link text-primary">主要链接</a>
+            <a href="#" class="link text-success">成功链接</a>
+            <a href="#" class="link text-info">信息链接</a>
+            <a href="#" class="link text-warning">警告链接</a>
+            <a href="#" class="link text-danger">危险链接</a>
+          </p>
+          <figure class="highlight">
+        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span
+          class="s">"link text-primary"</span><span class="nt">&gt;</span>主要链接<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"link text-success"</span><span
+            class="nt">&gt;</span>成功链接<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"link text-info"</span><span
+            class="nt">&gt;</span>信息链接<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"link text-warning"</span><span
+            class="nt">&gt;</span>警告链接<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"link text-danger"</span><span
+            class="nt">&gt;</span>危险链接<span class="nt">&lt;/a&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_basic_divider_vertical">垂直分隔符</h3>
+          <p>表格内的操作使用文字链接，多个中间需添加分隔符</p>
+          <p class="bd-example">
+            <a href="#" class="link text-primary">编辑</a><i class="divider-vertical"></i><a href="#" class="link text-danger">删除</a>
+          </p>
+          <figure class="highlight">
+        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"divider-vertical"</span><span
+          class="nt">&gt;</span><span class="nt">&lt;/i&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_message">Message 消息提示</h3>
+          <p>使用layer的msg弹窗，基本兼容layer的用法，详细使用方式可以查看demo.js和官方 <a href="https://www.layui.com/doc/modules/layer.html" target="_blank">API</a></p>
+          <div class="bd-example">
+            <button class="btn btn-primary" id="btn_success">成功</button>
+            <button class="btn btn-primary" id="btn_warning">警告</button>
+            <button class="btn btn-primary" id="btn_msg">消息</button>
+            <button class="btn btn-primary" id="btn_error">错误</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_message_box">MessageBox 弹框</h3>
+          <p>使用layer的弹窗，基本兼容layer的用法，详细使用方式可以查看demo.js和官方 <a href="https://www.layui.com/doc/modules/layer.html" target="_blank">API</a></p>
+          <div class="bd-example">
+            <button class="btn btn-primary" id="btn_alert">消息提示</button>
+            <button class="btn btn-primary" id="btn_confirm">确认消息</button>
+            <button class="btn btn-primary" id="btn_open">自定义内容</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_data_badge">Badge 标记</h3>
+          <p>添加以下任何修饰符类以更改标记的外观。</p>
+          <p class="bd-example">
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-secondary">Secondary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-danger">Danger</span>
+          </p>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;span</span> <span class="na">class=</span><span
+            class="s">"badge badge-primary"</span><span class="nt">&gt;</span>Primary<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-secondary"</span><span class="nt">&gt;</span>Secondary<span
+              class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-success"</span><span class="nt">&gt;</span>Success<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-info"</span><span class="nt">&gt;</span>Info<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-warning"</span><span class="nt">&gt;</span>Warning<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"badge badge-danger"</span><span class="nt">&gt;</span>Danger<span
+              class="nt">&lt;/span&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_data_Tree">Tree 树形控件</h3>
+          <p>使用zTree，具体使用方法可以查看官方API【修改后的UI已经完全屏蔽连接线】
+            <a href="https://github.com/zTree/zTree_v3" target="_blank">Github</a>
+            <a href="https://gitee.com/zTree/zTree_v3" class="link text-primary" target="_blank">码云</a>
+            <a href="http://www.treejs.cn/v3/api.php" target="_blank">API</a>
+          </p>
+          <div class="bd-example">
+            <ul id="treeDemo" class="ztree" style="float: left"></ul>
+            <ul id="treeDemoRadio" class="ztree" style="float: left"></ul>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span
+            class="s">"ztree"</span><span class="nt">&gt;</span><span class="nt">&lt;/ul&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5">Form 表单</h3>
+          <h4 id="nav_form_input">Input 输入框</h4>
+          <div class="bd-example">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <input class="form-control" type="text" placeholder="Readonly input here..." readonly>
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="validationServer02">Last name</label>
+                <input type="text" class="form-control is-invalid" id="validationServer02" placeholder="Last name" required>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-12">
+                <label for="validationTooltip03">City</label>
+                <input type="text" class="form-control is-invalid" id="validationTooltip03" placeholder="City" required>
+                <div class="invalid-tooltip">
+                  Please provide a valid city.
+                </div>
+              </div>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"exampleInputEmail1"</span><span class="nt">&gt;</span>Email address<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span
+              class="na">id=</span><span class="s">"exampleInputEmail1"</span> <span class="na">aria-describedby=</span><span class="s">"emailHelp"</span> <span class="na">placeholder=</span><span
+              class="s">"Enter email"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;small</span> <span class="na">id=</span><span class="s">"emailHelp"</span> <span class="na">class=</span><span class="s">"form-text text-muted"</span><span
+              class="nt">&gt;</span>We'll never share your email with anyone else.<span class="nt">&lt;/small&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span
+              class="s">"text"</span> <span class="na">placeholder=</span><span class="s">"Readonly input here..."</span> <span class="na">readonly</span><span
+              class="nt">&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre>
+          </figure>
+
+          <h4 id="nav_form_checkboxes">Checkboxes 复选框</h4>
+          <div class="bd-example">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
+              <label class="custom-control-label" for="customCheck1">勾选状态</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customCheck2">
+              <label class="custom-control-label" for="customCheck2">未勾选状态</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customCheck3" checked disabled>
+              <label class="custom-control-label" for="customCheck3">禁用 勾选状态</label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customCheck4" disabled>
+              <label class="custom-control-label" for="customCheck4">禁用 未勾选状态</label>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span
+            class="s">"custom-control custom-checkbox custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span
+              class="s">"custom-control-input"</span> <span class="na">id=</span><span class="s">"customCheck1"</span> <span class="na">checked</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customCheck1"</span><span class="nt">&gt;</span>勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-checkbox custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">id=</span><span class="s">"customCheck2"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customCheck2"</span><span class="nt">&gt;</span>未勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-checkbox custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">id=</span><span class="s">"customCheck3"</span> <span class="na">checked disabled</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customCheck3"</span><span class="nt">&gt;</span>禁用 勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-checkbox custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">id=</span><span class="s">"customCheck4"</span> <span class="na">disabled</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customCheck4"</span><span class="nt">&gt;</span>禁用 未勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+
+          <h4 id="nav_form_radios">Radios 单选框</h4>
+          <div class="bd-example">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" checked>
+              <label class="custom-control-label" for="customRadioInline1">勾选状态</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline2">未勾选状态</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline3" name="customRadioInline2" class="custom-control-input" checked disabled>
+              <label class="custom-control-label" for="customRadioInline3">禁用 勾选状态</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="customRadioInline4" name="customRadioInline2" class="custom-control-input" disabled>
+              <label class="custom-control-label" for="customRadioInline4">禁用 未勾选状态</label>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span
+            class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline1"</span> <span
+              class="na">name=</span><span class="s">"customRadioInline1"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">checked</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customRadioInline1"</span><span class="nt">&gt;</span>勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline2"</span> <span
+              class="na">name=</span><span class="s">"customRadioInline1"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span><span
+              class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customRadioInline2"</span><span class="nt">&gt;</span>未勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline3"</span> <span
+              class="na">name=</span><span class="s">"customRadioInline2"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span class="na">disabled checked</span><span
+              class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customRadioInline3"</span><span class="nt">&gt;</span>禁用 勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-radio custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">id=</span><span class="s">"customRadioInline4"</span> <span
+              class="na">name=</span><span class="s">"customRadioInline2"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">disabled</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customRadioInline4"</span><span class="nt">&gt;</span>禁用 未勾选状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+
+          <h4 id="nav_form_switches">Switches 开关</h4>
+          <div class="bd-example">
+            <div class="custom-control custom-switch custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label" for="customSwitch1">开关</label>
+            </div>
+            <div class="custom-control custom-switch custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customSwitch2" disabled>
+              <label class="custom-control-label" for="customSwitch2">禁用 关闭状态</label>
+            </div>
+            <div class="custom-control custom-switch custom-control-inline">
+              <input type="checkbox" class="custom-control-input" id="customSwitch3" disabled checked>
+              <label class="custom-control-label" for="customSwitch3">禁用 开启状态</label>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span
+            class="s">"custom-control custom-switch custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span
+              class="s">"custom-control-input"</span> <span class="na">id=</span><span class="s">"customSwitch1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customSwitch1"</span><span class="nt">&gt;</span>开关<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-switch custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">id=</span><span class="s">"customSwitch2"</span> <span class="na">disabled</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customSwitch2"</span><span class="nt">&gt;</span>禁用 关闭状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"custom-control custom-switch custom-control-inline"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">class=</span><span class="s">"custom-control-input"</span> <span
+              class="na">id=</span><span class="s">"customSwitch2"</span> <span class="na">disabled checked</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"custom-control-label"</span> <span class="na">for=</span><span
+              class="s">"customSwitch2"</span><span class="nt">&gt;</span>禁用 开启状态<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+
+          <h4 id="nav_form_select">Select 选择器</h4>
+          <p>兼容bootstrap-select的使用方式，详细使用方式可以查看demo和官方 <a href="https://developer.snapappointments.com/bootstrap-select/" target="_blank">API</a></p>
+          <div class="bd-example">
+            <select class="selectpicker">
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Barbecue</option>
+            </select>
+
+            <select class="selectpicker">
+              <optgroup label="Picnic">
+                <option>Mustard</option>
+                <option>Ketchup</option>
+                <option>Relish</option>
+              </optgroup>
+              <optgroup label="Camping">
+                <option>Tent</option>
+                <option>Flashlight</option>
+                <option>Toilet Paper</option>
+              </optgroup>
+            </select>
+
+            <select class="selectpicker" multiple>
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+            </select>
+
+            <select class="selectpicker" data-live-search="true">
+              <option>Mustard</option>
+              <option>Ketchup</option>
+              <option>Relish</option>
+              <option>Tent</option>
+              <option>Flashlight</option>
+              <option>Toilet Paper</option>
+              <option>Barbecue</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_form_date">DateTimePicker 日期时间选择器</h3>
+          <p>使用laydate日期组件，兼容layer的用法，详细使用方式可以查看demo.js和官方 <a href="https://www.layui.com/doc/modules/laydate.html" target="_blank">API</a></p>
+          <div class="bd-example">
+            <div class="form-group">
+              <label for="inputDate">日期选择器</label>
+              <input type="text" class="form-control" id="inputDate">
+            </div>
+            <div class="form-group">
+              <label for="inputDate_1">时间日期范围选择器</label>
+              <input type="text" class="form-control" id="inputDate_1">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_form_tree_select">TreeSelect 树选择</h3>
+          <p>组件中的tree组件使用的是zTree。所以必须要引用zTree组件后才能使用 <a href="http://www.treejs.cn/v3/api.php" target="_blank">zTree API</a></p>
+          <div class="bd-example">
+            <div class="row">
+              <div class="col-sm-7 col-xl-9 col-md-8">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="treeSelect">
+                </div>
+              </div>
+              <div class="col-sm-5 col-xl-3 col-md-4">
+                <button class="btn btn-primary" id="btn_getTreeSelectVal">获取值</button>
+                <button class="btn btn-primary" id="btn_setTreeSelectVal">设置值</button>
+              </div>
+            </div>
+
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span
+            class="s">"plug-in/treeSelect/js/treeSelect.js"</span><span
+            class="nt">&gt;&lt;/script&gt;</span></code>
+
+<code class="language-js" data-lang="js"><span class="kd">let</span> treeSelect = <span class="nx">$</span><span class="p">(</span><span
+  class="s1">'#treeSelect'</span><span class="p">).</span><span
+  class="nx">treeSelect</span><span class="p">(</span><span class="s1">config</span>, <span class="s1">data</span><span class="p">);</span></code></pre>
+          </figure>
+          <div class="bd-example" style="margin-top: -1rem">
+            <h4>Config Attributes</h4>
+            <p>配置参数属性说明</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">参数</th>
+                <th scope="col">说明</th>
+                <th scope="col">类型</th>
+                <th scope="col">默认值</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>idKey</td>
+                <td>节点数据中保存唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"id"</td>
+              </tr>
+              <tr>
+                <td>pIdKey</td>
+                <td>节点数据中保存其父节点唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"pId"</td>
+              </tr>
+              <tr>
+                <td>rootPId</td>
+                <td>用于修正根节点父节点数据，即 pIdKey 指定的属性值</td>
+                <td>String 或 int</td>
+                <td>-1</td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>指定选项名称为选项对象的某个属性值</td>
+                <td>String</td>
+                <td>"name"</td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>是否禁用组件</td>
+                <td>boolean</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>onlySelectOne</td>
+                <td>仅能选择一个选项</td>
+                <td>boolean</td>
+                <td>true</td>
+              </tr>
+              <tr>
+                <td>chkboxType</td>
+                <td>
+                  勾选 checkbox 对于父子节点的关联关系[onlySelectOne = false 时生效]<br>
+                  Y： 属性定义 checkbox 被勾选后的情况；<br>
+                  N： 属性定义 checkbox 取消勾选后的情况；<br>
+                  p： 表示操作会影响父级节点；<br>
+                  s： 表示操作会影响子级节点。<br>
+                </td>
+                <td>Object</td>
+                <td>{ "Y": "s", "N": "s" }</td>
+              </tr>
+              <tr>
+                <td>showIcon</td>
+                <td>设置 zTree 是否显示节点的图标</td>
+                <td>boolean</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>separator</td>
+                <td>选项显示的分隔符</td>
+                <td>String</td>
+                <td>" / "</td>
+              </tr>
+              <tr>
+                <td>callback</td>
+                <td>zTree的回调方法对象，对应zTree API中的callback</td>
+                <td>Object</td>
+                <td>{}</td>
+              </tr>
+              <tr>
+                <td>beforeClick</td>
+                <td>用于捕获单击节点之前的事件回调函数，并且根据返回值确定是否允许单击操作<br>(由于内部使用了此回调所以不能在callback中使用，具体参数与zTree相同，详细用法查看zTree API)</td>
+                <td>function (treeId, treeNode, clickFlag)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>onClick</td>
+                <td>用于捕获节点被点击的事件回调函数<br>(由于内部使用了此回调所以不能在callback中使用，具体参数与zTree相同，详细用法查看zTree API)</td>
+                <td>function (event, treeId, treeNode)</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>onCheck</td>
+                <td>用于捕获 checkbox / radio 被勾选 或 取消勾选的事件回调函数<br>(由于内部使用了此回调所以不能在callback中使用，具体参数与zTree相同，详细用法查看zTree API)</td>
+                <td>function (event, treeId, treeNode)</td>
+                <td>—</td>
+              </tr>
+              </tbody>
+            </table>
+            <h4>TreeSelect Methods</h4>
+            <p>TreeSelect对象方法介绍</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">方法名</th>
+                <th scope="col">说明</th>
+                <th scope="col">参数</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>val</td>
+                <td>不传参数是获取已选的选项idKey值或数组（多选为数组），传输参数是设置初始值</td>
+                <td>(val) 单选时填入idKey的值，多选为idKey的数组</td>
+              </tr>
+              <tr>
+                <td>getCheckedNodes</td>
+                <td>获取选中的节点对象或数组（单选为节点对象，多选为节点对象数组）</td>
+                <td>—</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_form_cascader">Cascader 级联选择器</h3>
+          <p>当一个数据集合有清晰的层级结构时，可通过级联选择器逐级查看并选择。</p>
+          <div class="bd-example">
+            <div class="row">
+              <div class="col-sm-7 col-xl-9 col-md-8"><input class="form-control" id="test_cascader" type="text"></div>
+              <div class="col-sm-5 col-xl-3 col-md-4">
+                <button class="btn btn-primary" id="btn_getCascaderVal">获取值</button>
+                <button class="btn btn-primary" id="btn_setCascaderVal">设置值</button>
+              </div>
+            </div>
+          </div>
+          <figure class="highlight">
+        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span
+          class="s">"plug-in/cascader/js/cascader.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
+
+<code class="language-js" data-lang="js"><span class="kd">let</span> test_cascader = <span class="nx">$</span><span class="p">(</span><span
+  class="s1">'#test_cascader'</span><span class="p">).</span><span
+  class="nx">cascader</span><span class="p">(</span><span class="s1">config</span>, <span class="s1">data</span><span class="p">);</span></code></pre>
+          </figure>
+          <div class="bd-example" style="margin-top: -1rem">
+            <h4>Config Attributes</h4>
+            <p>配置参数属性说明</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">参数</th>
+                <th scope="col">说明</th>
+                <th scope="col">类型</th>
+                <th scope="col">默认值</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>idKey</td>
+                <td>节点数据中保存唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"id"</td>
+              </tr>
+              <tr>
+                <td>pIdKey</td>
+                <td>节点数据中保存其父节点唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"pId"</td>
+              </tr>
+              <tr>
+                <td>rootPId</td>
+                <td>用于修正根节点父节点数据，即 pIdKey 指定的属性值</td>
+                <td>String 或 int</td>
+                <td>-1</td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>指定选项名称为选项对象的某个属性值</td>
+                <td>String</td>
+                <td>"name"</td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>是否禁用组件</td>
+                <td>boolean</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>separator</td>
+                <td>选项显示的分隔符</td>
+                <td>String</td>
+                <td>" / "</td>
+              </tr>
+              <tr>
+                <td>onClickNode</td>
+                <td>单击节点事件回调方法</td>
+                <td>function (event, node)</td>
+                <td>—</td>
+              </tr>
+              </tbody>
+            </table>
+            <h4>Cascader Methods</h4>
+            <p>Cascader对象方法介绍</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">方法名</th>
+                <th scope="col">说明</th>
+                <th scope="col">参数</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>val</td>
+                <td>不传参数是获取已选的选项id数组，传输参数是设置初始值</td>
+                <td>(val) 要选择的选项id数组</td>
+              </tr>
+              <tr>
+                <td>getCheckedNodes</td>
+                <td>获取选中的节点数据</td>
+                <td>(leafOnly) 是否只是叶子节点，默认值为 false</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_form_area">地址 选择器</h3>
+          <p>级联选择器的另一种表现形式，单面板多tab页适用地址这种数据量较大的选择</p>
+          <div class="bd-example">
+            <div class="row">
+              <div class="col-sm-7 col-xl-9 col-md-8"><input class="form-control" id="test_area_selector" type="text"></div>
+              <div class="col-sm-5 col-xl-3 col-md-4">
+                <button class="btn btn-primary" id="btn_getAreaVal">获取值</button>
+                <button class="btn btn-primary" id="btn_setAreaVal">设置值</button>
+              </div>
+            </div>
+          </div>
+          <figure class="highlight">
+        <pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span
+          class="s">"plug-in/cascader/js/cascader.js"</span><span class="nt">&gt;&lt;/script&gt;</span></code>
+
+<code class="language-js" data-lang="js"><span class="kd">let</span> test_cascader = <span class="nx">$</span><span class="p">(</span><span
+  class="s1">'#test_cascader'</span><span class="p">).</span><span
+  class="nx">cascader</span><span class="p">(</span><span class="s1">config</span>, <span class="s1">data</span><span class="p">);</span></code></pre>
+          </figure>
+          <div class="bd-example" style="margin-top: -1rem">
+            <h4>Config Attributes</h4>
+            <p>配置参数属性说明</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">参数</th>
+                <th scope="col">说明</th>
+                <th scope="col">类型</th>
+                <th scope="col">默认值</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>idKey</td>
+                <td>节点数据中保存唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"id"</td>
+              </tr>
+              <tr>
+                <td>pIdKey</td>
+                <td>节点数据中保存其父节点唯一标识的属性名称</td>
+                <td>String</td>
+                <td>"pId"</td>
+              </tr>
+              <tr>
+                <td>rootPId</td>
+                <td>用于修正根节点父节点数据，即 pIdKey 指定的属性值</td>
+                <td>String 或 int</td>
+                <td>-1</td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>指定选项名称为选项对象的某个属性值</td>
+                <td>String</td>
+                <td>"name"</td>
+              </tr>
+              <tr>
+                <td>disabled</td>
+                <td>是否禁用组件</td>
+                <td>boolean</td>
+                <td>false</td>
+              </tr>
+              <tr>
+                <td>separator</td>
+                <td>选项显示的分隔符</td>
+                <td>String</td>
+                <td>" / "</td>
+              </tr>
+              <tr>
+                <td>onClickNode</td>
+                <td>单击节点事件回调方法</td>
+                <td>function (event, node)</td>
+                <td>—</td>
+              </tr>
+              </tbody>
+            </table>
+            <h4>Cascader Methods</h4>
+            <p>Cascader对象方法介绍</p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">方法名</th>
+                <th scope="col">说明</th>
+                <th scope="col">参数</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>val</td>
+                <td>不传参数是获取已选的选项id数组，传输参数是设置初始值</td>
+                <td>(val) 要选择的选项id数组</td>
+              </tr>
+              <tr>
+                <td>getCheckedNodes</td>
+                <td>获取选中的节点数据</td>
+                <td>(leafOnly) 是否只是叶子节点，默认值为 false</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_form_slider">Slider 滑块</h3>
+          <p>使用刻度;原插件目前不兼容bootstrap4，无法显示悬浮提示的内容
+            <a href="https://github.com/seiyria/bootstrap-slider" target="_blank">Github</a>
+            <a href="https://seiyria.com/bootstrap-slider/" target="_blank">API</a>
+          </p>
+          <div class="bd-example">
+            <div class="form-slider">
+              <input id="input_range" type="range"/>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span
+            class="s">"form-slider"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"input_range"</span> <span class="na">type=</span><span
+              class="s">"range"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_navigation_dropdown">Dropdown 下拉菜单</h3>
+          <p>将动作或菜单折叠到下拉菜单中。</p>
+          <div class="bd-example">
+            <div class="d-inline-block">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <div class="d-inline-block">
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary">Action</button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item active" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+              </div>
+            </div>
+            <div class="d-inline-block">
+              <div class="dropdown">
+                <a class="link text-primary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown link
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span
+            class="s">"dropdown"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-secondary dropdown-toggle"</span> <span class="na">type=</span><span
+              class="s">"button"</span> <span class="na">id=</span><span class="s">"dropdownMenuButton"</span> <span class="na">data-toggle=</span><span
+              class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span
+              class="s">"false"</span><span
+              class="nt">&gt;</span>
+    Dropdown button
+  <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span> <span class="na">aria-labelledby=</span><span
+              class="s">"dropdownMenuButton"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Another action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Something else here<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"btn-group"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span
+              class="nt">&gt;</span>Action<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"btn btn-primary dropdown-toggle dropdown-toggle-split"</span> <span
+              class="na">data-toggle=</span><span class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span
+              class="na">aria-expanded=</span><span
+              class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"sr-only"</span><span class="nt">&gt;</span>Toggle Dropdown<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Another action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Something else here<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-divider"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Separated link<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"link text-primary dropdown-toggle"</span> <span class="na">href=</span><span
+              class="s">"#"</span> <span class="na">role=</span><span class="s">"button"</span> <span class="na">id=</span><span class="s">"dropdownMenuLink"</span> <span
+              class="na">data-toggle=</span><span
+              class="s">"dropdown"</span> <span class="na">aria-haspopup=</span><span class="s">"true"</span> <span class="na">aria-expanded=</span><span
+              class="s">"false"</span><span
+              class="nt">&gt;</span>
+    Dropdown link
+  <span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"dropdown-menu"</span> <span class="na">aria-labelledby=</span><span
+              class="s">"dropdownMenuLink"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Another action<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"dropdown-item"</span> <span class="na">href=</span><span class="s">"#"</span><span
+              class="nt">&gt;</span>Something else here<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h3 class="mt-5" id="nav_navigation_tabs">Tabs 标签页</h3>
+          <p>分隔内容上有关联但属于不同类别的数据集合 <a href="https://getbootstrap.com/docs/4.3/components/navs/" target="_blank">API</a></p>
+          <div class="bd-example">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">Home</div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Profile</div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
+            </div>
+          </div>
+          <figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul</span> <span class="na">class=</span><span
+            class="s">"nav nav-tabs"</span> <span
+            class="na">id=</span><span class="s">"myTab"</span> <span class="na">role=</span><span class="s">"tablist"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link active"</span> <span class="na">id=</span><span class="s">"home-tab"</span> <span
+              class="na">data-toggle=</span><span class="s">"tab"</span> <span class="na">href=</span><span class="s">"#home"</span> <span class="na">role=</span><span
+              class="s">"tab"</span> <span class="na">aria-controls=</span><span class="s">"home"</span> <span class="na">aria-selected=</span><span class="s">"true"</span><span
+              class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">id=</span><span class="s">"profile-tab"</span> <span class="na">data-toggle=</span><span
+              class="s">"tab"</span> <span class="na">href=</span><span class="s">"#profile"</span> <span class="na">role=</span><span class="s">"tab"</span> <span class="na">aria-controls=</span><span
+              class="s">"profile"</span> <span class="na">aria-selected=</span><span class="s">"false"</span><span class="nt">&gt;</span>Profile<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">id=</span><span class="s">"contact-tab"</span> <span class="na">data-toggle=</span><span
+              class="s">"tab"</span> <span class="na">href=</span><span class="s">"#contact"</span> <span class="na">role=</span><span class="s">"tab"</span> <span class="na">aria-controls=</span><span
+              class="s">"contact"</span> <span class="na">aria-selected=</span><span class="s">"false"</span><span class="nt">&gt;</span>Contact<span class="nt">&lt;/a&gt;</span>
+  <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tab-content"</span> <span class="na">id=</span><span class="s">"myTabContent"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tab-pane fade show active"</span> <span class="na">id=</span><span class="s">"home"</span> <span
+              class="na">role=</span><span class="s">"tabpanel"</span> <span class="na">aria-labelledby=</span><span class="s">"home-tab"</span><span
+              class="nt">&gt;</span>Home<span
+              class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tab-pane fade"</span> <span class="na">id=</span><span class="s">"profile"</span> <span class="na">role=</span><span
+              class="s">"tabpanel"</span> <span class="na">aria-labelledby=</span><span class="s">"profile-tab"</span><span class="nt">&gt;</span>Profile<span
+              class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tab-pane fade"</span> <span class="na">id=</span><span class="s">"contact"</span> <span class="na">role=</span><span
+              class="s">"tabpanel"</span> <span class="na">aria-labelledby=</span><span class="s">"contact-tab"</span><span class="nt">&gt;</span>Contact<span
+              class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span></code></pre>
+          </figure>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="js/demo.js"></script>
+</body>
+</html>

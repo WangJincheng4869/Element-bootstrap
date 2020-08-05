@@ -1,0 +1,237 @@
+layer.config({
+  offset: '100px',
+  resize: false
+});
+
+$('#btn_success').on('click', function () {
+  layer.msg('恭喜你，这是一条成功消息', {
+    skin: 'layer-success',
+  });
+});
+$('#btn_warning').on('click', function () {
+  layer.msg('警告哦，这是一条警告消息', {
+    skin: 'layer-error',
+  });
+});
+$('#btn_msg').on('click', function () {
+  layer.msg('这是一条消息提示');
+});
+$('#btn_error').on('click', function () {
+  layer.msg('错了哦，这是一条错误消息', {
+    skin: 'layer-error',
+  });
+});
+
+
+$('#btn_alert').on('click', function () {
+  layer.alert('我是一个alert');
+});
+$('#btn_confirm').on('click', function () {
+  layer.confirm('您是如何看待前端开发？', {
+    btn: ['重要', '奇葩'] //按钮
+  }, function () {
+    layer.msg('的确很重要', {
+      offset: '100px'
+    });
+  }, function () {
+    layer.msg('也可以这样', {
+      time: 20000, //20s后自动关闭
+      btn: ['明白了', '知道了']
+    });
+  });
+});
+$('#btn_open').on('click', function (e) {
+  layer.open({
+    type: 1,
+    btn: ['按钮一', '按钮二', '按钮三'],
+    content: '内容这里也可以写<b>html</b><br><i>要将允许拉伸关掉哦！</i>',
+    success: function () {
+      e.target.blur();
+    }
+  });
+});
+
+laydate.render({
+  elem: '#inputDate',
+  change: function (value, date) { //监听日期被切换
+    lay('#testView').html(value);
+  }
+});
+
+laydate.render({
+  elem: '#inputDate_1',
+  type: 'datetime',
+  range: true //或 range: '~' 来自定义分割字符
+});
+
+let ticks = [], ticks_labels = [];
+for (let i = 1; i <= 12; i++) {
+  ticks.push(i);
+  ticks_labels.push('<span>' + i + '</span>');
+}
+
+$('#input_range').slider({
+  min: 1,
+  max: 12,
+  step: 1,
+  value: 1,
+  ticks: ticks,
+  ticks_labels: ticks_labels
+});
+
+$('select').selectpicker();
+
+(function ($) {
+  let constants = {
+      icons: {
+        inputSuffix: '<i class="iconfont icon-arrow-up input-suffix"></i>',
+        nodePostfix: '<i class="iconfont icon-arrow-up cascader-node-postfix"></i>',
+        nodePrefix: '<i class="iconfont icon-check cascader-node-prefix"></i>',
+      },
+
+      classes: {
+        zoomInTopLeaveActive: 'el-zoom-in-top-leave-active',
+        zoomInTopEnter: 'el-zoom-in-top-enter',
+        zoomInTopEnterActive: 'el-zoom-in-top-enter-active',
+        isFocus: 'is-focus',
+        cascader: 'cascader',
+        elPopper: 'el-popper',
+        popperArrow: 'popper__arrow',
+      },
+
+      html: {
+        dropdown:
+          '<i class="iconfont icon-arrow-up input-suffix"></i>' +
+          '<div class="cascader-dropdown el-popper" x-placement="bottom-start">' +
+          '  <div class="popper__arrow"></div>' +
+          '  <div class="cascader-panel"></div>' +
+          '</div>',
+
+        menu:
+          '<div class="el-scrollbar cascader-menu" role="menu">' +
+          '  <div class="cascader-menu-wrap el-scrollbar-wrap" style="margin-bottom: -6px; margin-right: -6px;">' +
+          '    <ul class="el-scrollbar__view cascader-menu-list"></ul>' +
+          '  </div>' +
+          '  <div class="el-scrollbar__bar is-horizontal"><div class="el-scrollbar__thumb"></div></div>' +
+          '  <div class="el-scrollbar__bar is-vertical"><div class="el-scrollbar__thumb"></div></div>' +
+          '</div>',
+
+        node: '<li class="cascader-node" role="menuitem"><span class="cascader-node-label">组件</span></li>'
+      }
+    },
+    defaults = {
+      // 是否开启异步加载模式
+      asyncEnable: false,
+      // Ajax 的 http 请求模式
+      type: 'post',
+      // Ajax 提交参数的数据类型
+      contentType: 'application/json;charset=UTF-8',
+      // Ajax 请求提交的静态参数键值对
+      otherParam: {},
+      // 异步加载时需要自动提交父节点属性的参数
+      autoParam: [],
+      // Ajax 获取数据的 URL 地址
+      url: '',
+      // Ajax 获取的数据类型
+      dataType: 'json',
+      // 是否采用简单数据模式 (Array)
+      simpleDataEnable: true,
+      // 节点数据中保存唯一标识的属性名称
+      idKey: 'id',
+      // 节点数据中保存其父节点唯一标识的属性名称
+      pIdKey: 'pId',
+      // 用于修正根节点父节点数据，即 pIdKey 指定的属性值
+      rootPId: -1
+    };
+
+  $.fn.extend({
+    'cascader': function (options, data) {
+      if (typeof options !== 'object') return this;
+      let $this = $(this), classes = constants.classes, icons = constants.icons,
+        html = constants.html, config = $.extend({}, defaults, options);
+      // $this.after(html.dropdown);
+      if (!config.asyncEnable && data) {
+
+      }
+
+      let $cascader = $this.parents('.cascader'),
+        $cascader_dropdown = $this.siblings('.cascader-dropdown');
+
+      /**
+       * 文本框单击事件绑定
+       */
+      $this.on('click', function () {
+        if ($cascader.hasClass(classes.isFocus)) {
+          closePanel($cascader, $cascader_dropdown)
+        } else {
+          adjustPanelDirection($this, $cascader_dropdown);
+          $cascader_dropdown.addClass(classes.zoomInTopEnterActive);
+          $cascader_dropdown.addClass(classes.zoomInTopEnter);
+          $cascader.addClass(classes.isFocus);
+          setTimeout(function () {
+            $cascader_dropdown.removeClass(classes.zoomInTopEnter);
+          }, 1);
+        }
+      });
+
+      /**
+       * 选项单击事件
+       */
+      $cascader_dropdown.on('click', function (e) {
+
+      });
+
+      /**
+       * 单击空白处关闭面板
+       */
+      $(document).on('mouseup', function (e) {
+        if (!$cascader.is(e.target) && $cascader.has(e.target).length === 0) {
+          if ($cascader.hasClass(classes.isFocus)) {
+            closePanel($cascader, $cascader_dropdown)
+          }
+        }
+      });
+
+      /**
+       * 文本框父元素滚动监听，用于计算如何显示面板
+       */
+      $(document).scroll(function () {
+        adjustPanelDirection($this, $this.siblings('.cascader-dropdown'));
+      });
+      return $this;
+    }
+  });
+
+  /**
+   * 调整面板方法
+   * @param $this 下来文本框对象
+   * @param $cascader_dropdown 下来面板对象
+   */
+  function adjustPanelDirection($this, $cascader_dropdown) {
+    if ($this && $cascader_dropdown && $this.length > 0 && $cascader_dropdown.length > 0) {
+      let bottom = $(window).height() - ($this.offset().top - $(document).scrollTop());
+      if (bottom <= 250) {
+        $cascader_dropdown.attr('x-placement', 'top-start');
+      } else {
+        $cascader_dropdown.attr('x-placement', 'bottom-start');
+      }
+    }
+  }
+
+  /**
+   * 关闭面板
+   * @param $cascader 组件最外级对象
+   * @param $cascader_dropdown 下来面板对象
+   */
+  function closePanel($cascader, $cascader_dropdown) {
+    if ($cascader && $cascader_dropdown && $cascader.length > 0 && $cascader_dropdown.length > 0) {
+      $cascader_dropdown.addClass(constants.classes.zoomInTopLeaveActive);
+      setTimeout(function () {
+        $cascader_dropdown.removeClass(constants.classes.zoomInTopLeaveActive);
+        $cascader.removeClass(constants.classes.isFocus);
+      }, 300);
+    }
+  }
+})(jQuery);
+
+console.log($('#test_cascader').cascader({asyncEnable: true}));

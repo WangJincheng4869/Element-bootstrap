@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>bootstrap-switch</title>
+
+  <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css"/>
+  <link rel="stylesheet" href="../honeySwitch.css"/>
+  <script src="../../jquery/jquery-3.4.1.js"></script>
+  <script src="../../bootstrap/js/bootstrap.js"></script>
+  <script src="../honeySwitch.min.js"></script>
+  <script src="honeySwitch.js"></script>
+</head>
+<style>
+  html,body{
+    font-size: 12px;
+    width: 100%;
+  }
+</style>
+<body>
+<div style="margin: 200px auto;width: 100px">
+  <span class="switch-off"></span>
+  <span class="switch-off" id="demo1"></span>
+</div>
+</body>
+</html>
