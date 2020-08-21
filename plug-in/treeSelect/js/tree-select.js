@@ -88,7 +88,14 @@
           return values;
         } else {
           let targetId = this.targetId, config = this.config,
-            treeObj = $.fn.zTree.getZTreeObj('treeSelect_' + targetId);
+            $treeSelectInput = $('#' + targetId),
+            treeObj = $.fn.zTree.getZTreeObj('treeSelect_' + targetId),
+            placeholder = $treeSelectInput.attr('data-placeholder'),
+            title = $treeSelectInput.attr('data-title');
+          treeObj.checkAllNodes(false);
+          checkedNodes = {};
+          if (placeholder) $treeSelectInput.attr('placeholder', placeholder);
+          if (title) $treeSelectInput.attr('title', title);
           if (!$.isEmptyObject(val) && !config.onlySelectOne) {
             let valLength = val.length;
             for (let i = 0; i < valLength; i++) {
@@ -99,7 +106,7 @@
           } else if (val !== null && val !== '' && config.onlySelectOne) {
             let node = treeObj.getNodeByParam(config.idKey, val);
             treeObj.selectNode(node);
-            $('#' + targetId).attr('placeholder', node[config.name]);
+            $treeSelectInput.attr('placeholder', node[config.name]);
           }
         }
       },
@@ -122,12 +129,16 @@
       if (typeof options !== 'object') return this;
       let $treeSelectInput = $(this), targetId = $treeSelectInput.attr('id'),
         classes = constants.classes,
+        placeholder = $treeSelectInput.attr('placeholder'),
+        title = $treeSelectInput.attr('title'),
         html = constants.html, config = $.extend({}, defaults, options),
         // 级联组件对象，其中包含一些常用方法
         treeSelect = {targetId: targetId, config: config},
         scrollbarWidthAndHeight = getScrollBarWidthAndHeight(),
         scrollbarWidth = scrollbarWidthAndHeight[0],
         scrollbarHeight = scrollbarWidthAndHeight[1];
+      if (placeholder) $treeSelectInput.attr('data-placeholder', placeholder);
+      if (title) $treeSelectInput.attr('data-title', title);
       $treeSelectInput.attr(constants.defaultAttrs).after(html.dropdown(targetId, -scrollbarWidth + 'px', -scrollbarHeight + 'px'));
       if (config.disabled) $treeSelectInput.attr('disabled', 'disabled');
       let $treeSelect = $treeSelectInput.parent('.tree-select'),

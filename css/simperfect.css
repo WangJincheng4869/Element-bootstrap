@@ -1,5 +1,5 @@
 /*!
- * simperfect v1.2.13
+ * simperfect v1.2.14
  *
  * 作者：王金城
  * 日期：2020年7月30日
@@ -736,7 +736,7 @@ a.text-danger:hover:before {
     cursor: not-allowed;
 }
 
-.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .loading-text{
+.bootstrap-table .fixed-table-container .fixed-table-body .fixed-table-loading .loading-wrap .loading-text {
     display: none;
 }
 
@@ -1109,13 +1109,19 @@ a.text-danger:hover:before {
     height: 26px;
     display: inline-block;
     position: absolute;
-    z-index: -1;
+    z-index: -3;
     top: 3px;
     left: 0;
     background-color: #f2f6fc;
 }
 
-.layui-laydate.layui-laydate-range .layui-laydate-content td.layui-this:after {
+.layui-laydate .layui-laydate-content td.layui-this + td.laydate-selected:not(.laydate-day-next):not(.laydate-day-prev):after {
+    width: 192%;
+    left: -33px;
+    border-radius: 13px 0 0 13px;
+}
+
+.layui-laydate.layui-laydate-range .layui-laydate-content td.laydate-selected + .layui-this:after{
     content: "";
     width: 100%;
     height: 26px;
@@ -1123,15 +1129,22 @@ a.text-danger:hover:before {
     position: absolute;
     z-index: -2;
     top: 3px;
-    left: 3px;
     background-color: #f2f6fc;
-    border-radius: 13px 0 0 13px;
-}
-
-.layui-laydate.layui-laydate-range .layui-laydate-content td.laydate-selected ~ .layui-this:after,
-.layui-laydate.layui-laydate-range .layui-laydate-content td.layui-this ~ .layui-this:after {
     left: -3px;
     border-radius: 0 13px 13px 0;
+}
+
+.layui-laydate.layui-laydate-range .layui-laydate-content td.layui-this + .layui-this:after {
+    content: "";
+    width: 180%;
+    height: 26px;
+    display: inline-block;
+    position: absolute;
+    z-index: -2;
+    top: 3px;
+    background-color: #f2f6fc;
+    left: -33px;
+    border-radius: 13px;
 }
 
 .layui-laydate .layui-laydate-content td, .layui-laydate-content th {
@@ -1631,7 +1644,7 @@ a.text-danger:hover:before {
     height: 400px;
 }
 
-@media(max-height: 850px) {
+@media (max-height: 800px) {
 
     .tree-select-menu-wrap {
         height: 300px;
@@ -2393,7 +2406,7 @@ img.fit-cover,
     text-decoration: none;
 }
 
-.file-box .progress{
+.file-box .progress {
     position: absolute;
     width: 15.5rem;
     bottom: 0;
