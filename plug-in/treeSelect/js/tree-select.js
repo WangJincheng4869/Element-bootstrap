@@ -256,6 +256,7 @@
       }).on('keyup', function () {
         let searchKey = $.trim($(this).val());
         if (searchKey) {
+          treeSelectObj.expandAll(true);
           let showNodes = treeSelectObj.getNodesByParam('isHidden', false),
             nodes = treeSelectObj.getNodesByParamFuzzy(config.name, searchKey), hideParentNodes = [];
           treeSelectObj.hideNodes(showNodes);
