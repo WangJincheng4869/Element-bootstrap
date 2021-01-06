@@ -1,5 +1,6 @@
 /*
- * JQuery zTree excheck v3.5.40
+ * JQuery zTree excheck
+ * v3.5.46
  * http://treejs.cn/
  *
  * Copyright (c) 2010 Hunter.z
@@ -7,9 +8,9 @@
  * Licensed same as jquery - MIT License
  * http://www.opensource.org/licenses/mit-license.php
  *
- * email: hunter.z@263.net
- * Date: 2019-01-18
+ * Date: 2020-11-21
  */
+
 (function ($) {
   //default consts of excheck
   var _consts = {
@@ -190,7 +191,7 @@
       }
 
       zTreeTools.getCheckedNodes = function (checked) {
-        var checked = (checked !== false);
+        checked = (checked !== false);
         var children = data.nodeChildren(setting, data.getRoot(this.setting));
         return data.getTreeCheckedNodes(this.setting, children, checked);
       }

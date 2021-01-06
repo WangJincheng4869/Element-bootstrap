@@ -1,5 +1,5 @@
 /*!
- * cascader v1.0.2
+ * cascader v1.0.3
  *
  * 作者：王金城
  * 日期：2020年3月31日
@@ -72,6 +72,8 @@
       pIdKey: 'pId',
       // 用于修正根节点父节点数据，即 pIdKey 指定的属性值
       rootPId: -1,
+      // 节点数据排序字段Key
+      sortKey: '',
       // 节点数据保存节点名称的属性名称
       name: 'name',
       // 是否禁用组件
@@ -122,7 +124,7 @@
        * @param leafOnly  是否只是叶子节点，默认值为 false
        * @returns {Object|Array}
        */
-      getCheckedNodes: function(leafOnly) {
+      getCheckedNodes: function (leafOnly) {
         let nodes = checkedNodes[this.targetId];
         if (leafOnly === undefined || leafOnly === false) {
           return nodes || [];
@@ -166,13 +168,14 @@
         }
         optionIdsObj[pId][id] = option;
       });
-      let nodeHtml = '';
+      let nodeHtml = [];
       $.each(optionIdsObj[config.rootPId], function (i, option) {
         option.isParent = !$.isEmptyObject(optionIdsObj[option[config.idKey]]);
         if (option.level === undefined || option.level === null) option.level = 1;
-        nodeHtml += html.node(option, config);
+        let index = config.sortKey ? option[config.sortKey] : i;
+        nodeHtml[index] = html.node(option, config);
       });
-      $cascader_panel.append(html.menu(nodeHtml, 1, targetId, -scrollbarWidth + 'px', -scrollbarHeight + 'px'));
+      $cascader_panel.append(html.menu(nodeHtml.join(''), 1, targetId, -scrollbarWidth + 'px', -scrollbarHeight + 'px'));
       /**
        * 文本框单击事件绑定，展开关闭面板
        */
@@ -200,11 +203,12 @@
         let $this = $(this), id = $.trim($this.attr('data-id')),
           level = parseInt($this.attr('data-level')), nextLevel = level + 1;
         config.onClickNode(this, optionObj[id]);
-        let nodeHtml = '';
+        let nodeHtml = [];
         $.each(optionIdsObj[id], function (i, option) {
           option.isParent = !$.isEmptyObject(optionIdsObj[option[config.idKey]]);
           if (option.level === undefined || option.level === null) option.level = nextLevel;
-          nodeHtml += html.node(option, config);
+          let index = config.sortKey ? option[config.sortKey] : i;
+          nodeHtml[index] = html.node(option, config);
         });
         // 判断是否为父级选项，而改变图标形态；是否需要加载下一级
         if ($.isEmptyObject(optionIdsObj[id])) {
@@ -226,9 +230,9 @@
           $this.addClass(classes.activePath).siblings().removeClass(classes.activePath).removeClass(classes.active);
           let $cascader_menu = $('#cascader_menu_' + targetId + '_' + nextLevel);
           if ($cascader_menu.length > 0) {
-            $('#cascader_menu_' + targetId + '_' + nextLevel + ' .cascader-menu-list').html(nodeHtml);
+            $('#cascader_menu_' + targetId + '_' + nextLevel + ' .cascader-menu-list').html(nodeHtml.join(''));
           } else {
-            $cascader_panel.append(html.menu(nodeHtml, nextLevel, targetId, -scrollbarWidth + 'px', -scrollbarHeight + 'px'));
+            $cascader_panel.append(html.menu(nodeHtml.join(''), nextLevel, targetId, -scrollbarWidth + 'px', -scrollbarHeight + 'px'));
           }
           $cascader_menu.nextAll().remove();
           initScrollbar(targetId, nextLevel, scrollbarHeight);

@@ -470,6 +470,13 @@ $('#btn_setTreeSelectVal').on('click', function () {
   treeSelect.val([234, 224, 124]);
 });
 
+$('#btn_getTreeSelectObj').on('click', function () {
+  console.log($.fn.tree_select.getTreeSelectObj('treeSelect'));
+});
+
+$('#btn_zTreeObj').on('click', function () {
+  console.log(treeSelect.getZTreeObj());
+});
 
 let test_area_selector = $('#test_area_selector').areaSelector({
   url: 'area.json',

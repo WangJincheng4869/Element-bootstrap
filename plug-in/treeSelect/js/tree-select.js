@@ -1,5 +1,5 @@
 /*!
- * treeSelect v1.0.2
+ * treeSelect v1.0.3
  *
  * 作者：王金城
  * 日期：2019年11月12日
@@ -62,6 +62,10 @@
       separator: ' / ',
       // zTree的回调方法
       callback: {},
+      // zTree setting中的view
+      view: {
+        showIcon: false
+      },
       beforeClick: function (treeId, treeNode, clickFlag) {
       },
       onClick: function (event, treeId, treeNode) {
@@ -71,6 +75,8 @@
     },
     // 以targetId为key存储选中节点对象
     checkedNodes = {},
+    // 以targetId为key存储treeSelect对象
+    treeSelectObjs = {},
     methods = {
       /**
        * 获取或设置值
@@ -115,11 +121,30 @@
        * 获取选中的节点对象
        * @returns {Object|Array} 单选为节点对象，多选为节点对象数组
        */
-      getCheckedNodes: function() {
+      getCheckedNodes: function () {
         if (this.config.onlySelectOne) {
           return checkedNodes[this.targetId] || {};
         }
         return checkedNodes[this.targetId] || [];
+      },
+
+      /**
+       * zTree v3.x 专门提供的根据 treeId 获取 zTree 对象的方法。
+       * 必须在初始化 zTree 以后才可以使用此方法。
+       * 有了这个方法，用户不再需要自己设定全局变量来保存 zTree 初始化后得到的对象了，而且在所有回调函数中全都会返回 treeId 属性，用户可以随时使用此方法获取需要进行操作的 zTree 对象
+       */
+      getZTreeObj: function () {
+        return $.fn.zTree.getZTreeObj('treeSelect_' + this.targetId);
+      },
+
+      /**
+       * 重载tree数据
+       * @param data 重新载入的数据
+       */
+      reload: function (data) {
+        let targetId = this.targetId, zTreeObj = this.getZTreeObj(), setting = this.zTreeSetting;
+        zTreeObj.destroy();
+        $.fn.zTree.init($('#treeSelect_' + targetId), setting, data);
       }
     };
 
@@ -144,9 +169,7 @@
       let $treeSelect = $treeSelectInput.parent('.tree-select'),
         $treeSelect_dropdown = $treeSelectInput.siblings('.tree-select-dropdown'), $input_suffix = $treeSelectInput.next('.input-suffix'),
         setting = {
-          view: {
-            showIcon: config.showIcon
-          },
+          view: config.view,
           data: {
             simpleData: {
               enable: true,
@@ -194,6 +217,7 @@
         }
         config.onClick(event, treeId, treeNode);
       };
+      treeSelect['zTreeSetting'] = setting;
       let treeSelectObj = $.fn.zTree.init($('#treeSelect_' + targetId), setting, data),
         $scrollbar__wrap = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__wrap'),
         $scrollbar__thumb = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__bar.is-vertical .el-scrollbar__thumb'),
@@ -263,9 +287,22 @@
       $(document).scroll(function () {
         adjustPanelDirection($treeSelectInput, $treeSelectInput.siblings('.tree-select-dropdown'));
       });
-      return $.extend({}, treeSelect, methods);
+      treeSelectObjs[targetId] = $.extend({}, treeSelect, methods);
+      return treeSelectObjs[targetId];
     }
   });
+
+  $.fn.tree_select = {
+    /**
+     * 获取TreeSelect对象
+     * @param treeSelectId TreeSelect的id
+     * @returns {*} TreeSelect对象
+     */
+    getTreeSelectObj: function (treeSelectId) {
+      let o = treeSelectObjs[treeSelectId];
+      return o ? o : null;
+    }
+  }
 
   /**
    * 查找子节点显示，其父节点却隐藏的父节点
@@ -324,8 +361,10 @@
    * @param wrapHeight 包裹内容面板的高度，真实的高度是去除横向滚动条的高度；因为设置了margin-bottom=负的滚动条的高度
    */
   function initScrollbar(targetId, $scrollbar__wrap, $scrollbar__thumb, scrollbarHeight, wrapHeight) {
+    let $scrollbar__view = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__view');
+    if ($scrollbar__view.length === 0) return false;
     // 内容的高度
-    let viewHeight = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__view')[0].scrollHeight;
+    let viewHeight = $scrollbar__view[0].scrollHeight;
     if (wrapHeight < viewHeight) $scrollbar__thumb.css('height', (wrapHeight / viewHeight * 100) + '%');
     setTimeout(function () {
       initScrollbar(targetId, $scrollbar__wrap, $scrollbar__thumb, scrollbarHeight, wrapHeight)
