@@ -142,9 +142,15 @@
        * @param data 重新载入的数据
        */
       reload: function (data) {
-        let targetId = this.targetId, zTreeObj = this.getZTreeObj(), setting = this.zTreeSetting;
-        zTreeObj.destroy();
-        $.fn.zTree.init($('#treeSelect_' + targetId), setting, data);
+        let zTreeObj = this.getZTreeObj(), rootNode = zTreeObj.getNodeByParam(this.config.pIdKey, this.config.rootPId);
+        zTreeObj.removeChildNodes(rootNode);
+        zTreeObj.removeNode(rootNode);
+        zTreeObj.addNodes(null, data);
+        if (this.config.onlySelectOne) {
+          this.val('')
+        } else {
+          this.val([])
+        }
       }
     };
 
@@ -217,7 +223,6 @@
         }
         config.onClick(event, treeId, treeNode);
       };
-      treeSelect['zTreeSetting'] = setting;
       let treeSelectObj = $.fn.zTree.init($('#treeSelect_' + targetId), setting, data),
         $scrollbar__wrap = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__wrap'),
         $scrollbar__thumb = $('#treeSelect_panel_' + targetId + ' .el-scrollbar__bar.is-vertical .el-scrollbar__thumb'),
