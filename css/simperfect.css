@@ -1,5 +1,5 @@
 /*!
- * simperfect v1.2.20
+ * simperfect v1.2.21
  *
  * 作者：王金城
  * 日期：2020年9月4日
@@ -1787,6 +1787,11 @@ a.text-danger:hover:before {
     outline: none;
 }
 
+.cascader-node.is-disabled {
+    color: #c0c4cc;
+    cursor: not-allowed;
+}
+
 .cascader-node:not(.is-disabled) {
     cursor: pointer;
 }
@@ -1815,6 +1820,10 @@ a.text-danger:hover:before {
 .cascader-node.in-active-path, .cascader-node.is-active, .cascader-node.is-selectable.in-checked-path {
     color: #26a7de;
     font-weight: 700;
+}
+
+.cascader-node.in-active-path.is-disabled, .cascader-node.is-active.is-disabled, .cascader-node.is-selectable.in-checked-path.is-disabled {
+    color: #95d4ef;
 }
 
 .cascader-menu:last-child .cascader-node {

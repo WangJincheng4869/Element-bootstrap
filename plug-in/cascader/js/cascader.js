@@ -23,6 +23,7 @@
         activePath: 'in-active-path',
         active: 'is-active',
         d_block: 'd-block',
+        is_disabled: 'is-disabled',
       },
 
       defaultAttrs: {
@@ -53,7 +54,7 @@
 
         node: function (option, config) {
           let menuitem =
-            '<li class="cascader-node" role="menuitem" data-id="' + option[config.idKey] + '" data-level="' + option.level + '">' +
+            '<li class="cascader-node ' + (option.isDisabled === 1 ? 'is-disabled' : '') + '" role="menuitem" data-id="' + option[config.idKey] + '" data-level="' + option.level + '">' +
             '<span class="cascader-node-label">' + option[config.name] + '</span>';
           if (option.isParent) {
             menuitem += constants.icons.nodePostfix;
@@ -104,14 +105,17 @@
           });
           return values;
         } else if (!$.isEmptyObject(val)) {
-          let targetId = this.targetId;
+          let targetId = this.targetId, disabledClass = constants.classes.is_disabled;
           $('#' + targetId).siblings('.cascader-dropdown').css({'opacity': 0, 'display': 'block'});
           for (let i = 0; i < val.length; i++) {
-            let $node = $('#cascader_panel_' + targetId).find('.cascader-node[data-id=' + val[i] + ']');
+            let $node = $('#cascader_panel_' + targetId).find('.cascader-node[data-id=' + val[i] + ']'),
+              is_disabled = $node.hasClass(disabledClass);
             if ($node.index() > 5) {
               $node.parents('.el-scrollbar__wrap').animate({scrollTop: 35 * ($node.index() - 3)}, 20);
             }
+            if (is_disabled) $node.removeClass(disabledClass);
             $node.click();
+            if (is_disabled) $node.addClass(disabledClass);
           }
           setTimeout(function () {
             $('#' + targetId).siblings('.cascader-dropdown').css({'opacity': '', 'display': ''});
@@ -203,6 +207,7 @@
         let $this = $(this), id = $.trim($this.attr('data-id')),
           level = parseInt($this.attr('data-level')), nextLevel = level + 1;
         config.onClickNode(this, optionObj[id]);
+        if ($this.hasClass('is-disabled')) return;
         let nodeHtml = [];
         $.each(optionIdsObj[id], function (i, option) {
           option.isParent = !$.isEmptyObject(optionIdsObj[option[config.idKey]]);
