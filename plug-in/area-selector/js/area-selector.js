@@ -156,6 +156,7 @@
        * 文本框单击事件绑定，展开面板操作
        */
       $areaSelectorInput.on('click', function () {
+        if ($areaSelectorInput.hasClass('is-invalid')) $areaSelectorInput.removeClass('is-invalid');
         if (!$areaSelector.hasClass(classes.isFocus)) {
           adjustPanelDirection($areaSelectorInput, $areaSelector_dropdown);
           $areaSelector_dropdown.addClass(classes.zoomInTopEnterActive).addClass(classes.zoomInTopEnter);
@@ -223,7 +224,7 @@
       /**
        * 文本框父元素滚动监听，用于计算如何显示面板
        */
-      $(document).scroll(function () {
+      $areaSelector.parents().scroll(function () {
         adjustPanelDirection($areaSelectorInput, $areaSelector_dropdown);
       });
 

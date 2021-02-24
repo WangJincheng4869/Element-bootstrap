@@ -184,6 +184,7 @@
        * 文本框单击事件绑定，展开关闭面板
        */
       $cascaderInput.on('click', function () {
+        if ($cascaderInput.hasClass('is-invalid')) $cascaderInput.removeClass('is-invalid');
         if ($cascader.hasClass(classes.isFocus)) {
           closePanel($cascader, $cascader_dropdown)
         } else {
@@ -258,7 +259,7 @@
       /**
        * 文本框父元素滚动监听，用于计算如何显示面板
        */
-      $(document).scroll(function () {
+      $cascader.parents().scroll(function () {
         adjustPanelDirection($cascaderInput, $cascaderInput.siblings('.cascader-dropdown'));
       });
       return $.extend({}, cascader, methods);
