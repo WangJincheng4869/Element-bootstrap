@@ -1,8 +1,8 @@
 /*!
- * cascader v1.0.3
+ * cascader v1.0.5
  *
  * 作者：王金城
- * 日期：2020年3月31日
+ * 日期：2021年4月28日
  */
 (function ($) {
   let constants = {
@@ -91,6 +91,8 @@
     },
     // 以targetId为key存储选中节点的值
     checkedNodes = {},
+    // 以targetId为key存储cascader对象
+    cascaderObjs = {},
     methods = {
       /**
        * 获取或设置值
@@ -200,13 +202,32 @@
           }, 300);
         }
       });
+      // 清空按钮相关事件
+      $cascaderInput.parent().on('mouseover', function () {
+        if ($cascaderInput.val()) {
+          $cascaderInput.next('.input-suffix').addClass('event-auto').children('.iconfont').removeClass('icon-arrow-up').addClass('icon-close-s')
+        }
+      }).on('mouseout', function () {
+        $cascaderInput.next('.input-suffix').removeClass('event-auto').children('.iconfont').removeClass('icon-close-s').addClass('icon-arrow-up')
+      }).on('click', '.input-suffix', function () {
+        closePanel($cascader, $cascader_dropdown);
+        $cascader_dropdown.find('.is-active').removeClass('is-active');
+        checkedNodes[targetId] = [];
+        $cascaderInput.val('');
+      });
 
       /**
        * 选项单击事件
        */
       $cascader_dropdown.on('click', '.cascader-node', function () {
         let $this = $(this), id = $.trim($this.attr('data-id')),
-          level = parseInt($this.attr('data-level')), nextLevel = level + 1;
+          level = parseInt($this.attr('data-level')), nextLevel = level + 1,
+          $menu_list = $(this).parent('.cascader-menu-list'),
+          menuListWidth = 180,
+          right = $(document).width() - $menu_list.offset().left - menuListWidth,
+          dropdownPositionLeft = $cascader_dropdown.position().left,
+          $popper__arrow = $cascader_dropdown.children('.popper__arrow'),
+          arrowLeft = $popper__arrow.position().left;
         config.onClickNode(this, optionObj[id]);
         if ($this.hasClass('is-disabled')) return;
         let nodeHtml = [];
@@ -218,6 +239,25 @@
         });
         // 判断是否为父级选项，而改变图标形态；是否需要加载下一级
         if ($.isEmptyObject(optionIdsObj[id])) {
+          // 当前条件代表面板有位移，且右侧有空间
+          if (right > 1 && dropdownPositionLeft < 0) {
+            // 小于一个面板的宽度，则归位
+            if (dropdownPositionLeft * -1 < menuListWidth) {
+              $cascader_dropdown.removeAttr('style');
+              $popper__arrow.removeAttr('style');
+            } else {
+              // 大于面板宽度，计算有多少个面板宽度
+              let leftMinus = menuListWidth * (right / menuListWidth);
+              // 计算居左大于0，则归位
+              if (dropdownPositionLeft + leftMinus > 0) {
+                $cascader_dropdown.removeAttr('style');
+                $popper__arrow.removeAttr('style');
+              } else {
+                $cascader_dropdown.css('left', dropdownPositionLeft + leftMinus);
+                $popper__arrow.css('left', arrowLeft + leftMinus);
+              }
+            }
+          }
           $this.addClass(classes.active).siblings().removeClass(classes.active).removeClass(classes.activePath);
           $('#cascader_menu_' + targetId + '_' + level).nextAll().remove();
           let valNames = '', nodes = [];
@@ -242,6 +282,31 @@
           }
           $cascader_menu.nextAll().remove();
           initScrollbar(targetId, nextLevel, scrollbarHeight);
+          // 如果距右距离小于一个面板的宽度，则面板整体向左移动
+          if (right < menuListWidth) {
+            let left = $cascader_dropdown.position().left - (menuListWidth - right),
+              arrowLeft = $popper__arrow.position().left + (menuListWidth - right)
+            $cascader_dropdown.css('left', left);
+            $popper__arrow.css('left', arrowLeft);
+          } else if (right > menuListWidth) {
+            if (dropdownPositionLeft === 0) return;
+            // 如果小于一个面板宽度，那么可以直接归位
+            if (dropdownPositionLeft * -1 < menuListWidth) {
+              $cascader_dropdown.removeAttr('style');
+              $popper__arrow.removeAttr('style');
+            } else {
+              // 大于面板宽度，计算有多少个面板宽度
+              let leftMinus = menuListWidth * (right / menuListWidth - 1);
+              // 计算居左大于0，则归位
+              if (dropdownPositionLeft + leftMinus > 0) {
+                $cascader_dropdown.removeAttr('style');
+                $popper__arrow.removeAttr('style');
+                return;
+              }
+              $cascader_dropdown.css('left', dropdownPositionLeft + leftMinus);
+              $popper__arrow.css('left', arrowLeft + leftMinus);
+            }
+          }
         }
       });
 
@@ -262,9 +327,23 @@
       $cascader.parents().scroll(function () {
         adjustPanelDirection($cascaderInput, $cascaderInput.siblings('.cascader-dropdown'));
       });
-      return $.extend({}, cascader, methods);
+      cascaderObjs[targetId] = $.extend({}, cascader, methods);
+      return cascaderObjs[targetId];
     }
   });
+
+
+  $.fn.sp_cascader = {
+    /**
+     * 获取cascader对象
+     * @param cascaderId cascader的id
+     * @returns {*} cascader对象
+     */
+    getCascaderObj: function (cascaderId) {
+      let o = cascaderObjs[cascaderId];
+      return o ? o : null;
+    }
+  }
 
   /**
    * 调整面板方法

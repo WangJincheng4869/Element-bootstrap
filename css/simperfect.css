@@ -1685,6 +1685,10 @@ a.text-danger:hover:before {
     pointer-events: none;
 }
 
+.cascader .input-suffix.event-auto {
+    pointer-events: auto;
+}
+
 .cascader.is-focus .input-suffix,
 .tree-select.is-focus .input-suffix,
 .area-selector.is-focus .input-suffix {
@@ -1695,6 +1699,10 @@ a.text-danger:hover:before {
 .tree-select input:disabled ~ .input-suffix,
 .area-selector input:disabled ~ .input-suffix {
     color: #c0c4cc;
+}
+
+.cascader .input-suffix .icon-close-s:hover {
+    color: #26a7de;
 }
 
 .cascader-dropdown,
