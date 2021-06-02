@@ -1,8 +1,8 @@
 /*!
- * simperfect v1.2.22
+ * simperfect v1.2.23
  *
  * 作者：王金城
- * 日期：2020年9月4日
+ * 日期：2021年5月27日
  */
 html {
     font-size: 14px;
@@ -1603,7 +1603,7 @@ a.text-danger:hover:before {
 }
 
 /* cascader 级联选择器 */
-.cascader, .tree-select, .area-selector {
+.cascader, .tree-select, .area-selector, .autocomplete-box {
     position: relative;
 }
 
@@ -1707,6 +1707,7 @@ a.text-danger:hover:before {
 
 .cascader-dropdown,
 .tree-select-dropdown,
+.autocomplete-dropdown,
 .area-selector-dropdown {
     position: absolute;
     display: none;
@@ -1720,14 +1721,21 @@ a.text-danger:hover:before {
     z-index: 1000;
 }
 
+.autocomplete-dropdown,
+.autocomplete-panel {
+    width: 100%;
+}
+
 .cascader-dropdown[x-placement^=top],
 .tree-select-dropdown[x-placement^=top],
+.autocomplete-dropdown[x-placement^=top],
 .area-selector-dropdown[x-placement^=top] {
     bottom: calc(1.5em + 0.75rem + 2px);
 }
 
 .cascader.is-focus .cascader-dropdown,
 .tree-select.is-focus .tree-select-dropdown,
+.autocomplete-box.is-focus .autocomplete-dropdown,
 .area-selector.is-focus .area-selector-dropdown {
     display: block;
 }
@@ -1750,6 +1758,14 @@ a.text-danger:hover:before {
     max-width: 800px;
     width: max-content;
     height: 400px;
+}
+
+.autocomplete-menu-wrap {
+    width: calc(100% + 6px);
+}
+
+.autocomplete-menu-wrap.max-height {
+    height: 240px;
 }
 
 @media (max-height: 800px) {
@@ -1850,6 +1866,7 @@ a.text-danger:hover:before {
 
 .cascader-dropdown.el-popper .popper__arrow,
 .tree-select-dropdown.el-popper .popper__arrow,
+.autocomplete-dropdown.el-popper .popper__arrow,
 .area-selector-dropdown.el-popper .popper__arrow {
     left: 35px;
 }
@@ -2566,4 +2583,28 @@ img.fit-cover,
 .icon-loading {
     display: inline-block;
     animation: 2s linear infinite spinner-border;
+}
+
+ul.autocomplete {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+}
+
+ul.autocomplete li{
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    color: #606266;
+    cursor: pointer;
+}
+
+ul.autocomplete li:hover {
+    color: #606266;
+    background-color: #f5f7fa;
 }

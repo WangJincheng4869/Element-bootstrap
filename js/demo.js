@@ -574,3 +574,12 @@ $('#table').bootstrapTable({
     sortable: true
   }]
 });
+let autocompleteData = [];
+for (let i = 0; i < 20; i++) {
+  autocompleteData.push({
+    name: '选项' + i,
+    value: '选项' + i
+  })
+}
+
+$('#exampleFormControlInput1').autocomplete(autocompleteData);

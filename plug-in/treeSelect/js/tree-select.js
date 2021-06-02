@@ -1,8 +1,8 @@
 /*!
- * treeSelect v1.0.3
+ * treeSelect v1.1.6
  *
  * 作者：王金城
- * 日期：2019年11月12日
+ * 日期：2020年05月27日
  */
 (function ($) {
   let constants = {
@@ -371,10 +371,14 @@
     if ($scrollbar__view.length === 0) return false;
     // 内容的高度
     let viewHeight = $scrollbar__view[0].scrollHeight;
-    if (wrapHeight < viewHeight) $scrollbar__thumb.css('height', (wrapHeight / viewHeight * 100) + '%');
+    if (wrapHeight < viewHeight) {
+      $scrollbar__thumb.css('height', (wrapHeight / viewHeight * 100) + '%');
+    } else {
+      $scrollbar__thumb.css('height', 0);
+    }
     setTimeout(function () {
       initScrollbar(targetId, $scrollbar__wrap, $scrollbar__thumb, scrollbarHeight, wrapHeight)
-    }, 10)
+    }, 100)
   }
 
   /**
